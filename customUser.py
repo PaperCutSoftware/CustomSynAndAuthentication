@@ -11,7 +11,7 @@
 #  N.B. This example is for illustrative purposes only. Any production solution
 #  needs to be optimised for performance.
 
-import sys
+from sys import exit, stdin, stdout, stderr
 import logging
 import xmlrpc.client
 from ssl import create_default_context, Purpose
@@ -44,49 +44,48 @@ def formatUserDetails(userName):
         else:
             return '\t'.join([userName, userDatabase[userName]["fullname"], userDatabase[userName]["email"], userDatabase[userName]["dept"], userDatabase[userName]["office"]])
     else:
-        print("Call to formatUserDetails error for username {}".format(userName), file=sys.stderr)
-        sys.exit(-1)
+        stderr.write(f'Call to formatUserDetails error for username "{userName}"\n')
+        exit(-1)
 
 # Should be return short or long form user data? Let's ask PaperCut MF/NG
 proxy = xmlrpc.client.ServerProxy(host, verbose=False, 
                 context = create_default_context(Purpose.CLIENT_AUTH))
 
 try:
-    extraData = "N" != proxy.api.getConfigValue(auth, "user-source.update-user-details-card-id")
+    extraData = True if "N" != proxy.api.getConfigValue(auth, "user-source.update-user-details-card-id") else False
 except Exception:
-    print("Cannot use web services API. Please configure", file=sys.stderr)
-    sys.exit(-1)
+    stderr.write("Cannot use web services API. Please configure\n")
+    exit(-1)
 
 # Being called as user auth program
 if len(sys.argv) == 1:
-    name = input()
-    password = input()
+    name = stdin.readline().strip()
+    password = stdin.readline().strip()
     if name in userDatabase and userDatabase[name]["password"] == password:
-        print("OK\n{}\n".format(name)) # Note: return canonical user name
-        sys.exit(0)
+        stdout.write("OK\n{}\n".format(name)) # Note: return canonical user name
+        exit(0)
     else:
-        print("Wrong username or password", file=sys.stderr)
-        print("ERROR\n")
-        sys.exit(-1)
+        stderr.write("Wrong username or password\n")
+        stdout.write("ERROR\n")
+        exit(-1)
 
 if len(sys.argv) < 2 or  sys.argv[1] != '-':
-    print("incorrect argument passed {0}".format(sys.argv), file=sys.stderr)
+    stderr.write(f'incorrect argument passed {sys.argv}"\n')
     sys.exit(-1)
 
 # Being called as user sync program
 if sys.argv[2] == "is-valid":
-    print('Y')
-    print("long form user data record will provided" if extraData else "short form user data record will provided")
-    sys.exit(0)
+    stdout.write(f'Y\n{"Long form user data record will provided" if extraData else "short form user data record will provided"}\n')
+    exit(0)
 
 if sys.argv[2] == "all-users":
     for name in userDatabase:
-        print(formatUserDetails(name))
-    sys.exit(0)
+        stdout.write(formatUserDetails(name))
+    exit(0)
 
 if sys.argv[2] == "all-groups":
     print('\n'.join([g for g in groupDatabase]))
-    sys.exit(0)
+    exit(0)
 
 if sys.argv[2] == "get-user-details":
     name = input()
