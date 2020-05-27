@@ -1,8 +1,5 @@
 # Examples of Custom Authentication and Synchronization modules
 
-<!-- See https://www.papercut.com/kb/Main/CaseStudyCustomUserSyncIntegration
-for further information -->
-
 ## Introduction
 
 The custom authentication and sync plugin is designed to replace user directory integration

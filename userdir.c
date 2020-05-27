@@ -1,5 +1,5 @@
 /*
- * (c) Copyright @copyright.range@ @copyright.owner@
+ * (c) Copyright 1999-2018 PaperCut Software International Pty Ltd
  *
  * A user dir information provider for Unix systems.  This uses the standard
  * C API's (getpwnam, etc) and hence will work with systems using nsswitch.conf.

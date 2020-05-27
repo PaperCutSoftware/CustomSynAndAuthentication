@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 #
-# (c) Copyright @copyright.range@ @copyright.owner@
+# (c) Copyright 1999-2018 PaperCut Software International Pty Ltd
 #
 # A user directory information provider implementation based on Samba.
 # This is simply a Perl script that wraps the Samba "net" command.
