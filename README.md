@@ -5,6 +5,10 @@
 The custom authentication and sync plugin is designed to replace user directory integration
 in PaperCut MF/NG for customers who cannot use the existing AD and LDAP integration support.
 
+For an overview please refer to the
+[Custom user directory information providers](https://www.papercut.com/support/resources/manuals/ng-mf/common/topics/customize-user-provider.html)
+section in PaperCut MF/NG manual.
+
 Once you have created and tested the plugin you will need to install it in PaperCut MF/NG:
 
 In the PaperCut MF/NG admin interface select
@@ -15,9 +19,12 @@ In the PaperCut MF/NG admin interface select
 [Primary sync source]  => [Custom Program ....]
 [Custom user program]  => [<path to your executable plugin>]
 [Custom auth program]  => [<path to your executable plugin>]
-```
 
-For an overview please refer to the [Custom user directory information providers](https://www.papercut.com/support/resources/manuals/ng-mf/common/topics/customize-user-provider.html) section in PaperCut MF/NG manual.
+```
+On the same screen use the left hand menu to select `[Config Editor (Advanced)]`
+
+Edit or add the config key `user-source.update-user-details-card-id` and set it's value to "Y".
+
 
 ## Custom user program
 
@@ -279,6 +286,8 @@ The custom user program must provide a list of user details in response to the `
 The user details is an ordered list of fields each separated by a tab character (`\t`) and terminated with a newline. The text should be UTF-8 encoded.
 
 Each field is optional and may be supplied as a zero length string `\t\t`. Only the username is a mandatory.
+
+**NOTE**: Assign the value of ‘Y’ to the user-source.update-user-details-card-id config key.
 
 The complete list of fields is
 
