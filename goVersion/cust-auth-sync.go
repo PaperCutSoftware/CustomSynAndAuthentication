@@ -84,7 +84,8 @@ func (c client) getConfigValue(keyName string) (string, error) {
 }
 
 func getConfigValue(token string, configName string) string {
-	papercutServer := "http://localhost"
+	hostname, _ := os.Hostname()
+	papercutServer := fmt.Sprintf("http://%v", hostname)
 	papercutPort := "9191"
 
 	r, err := client{papercutServer, papercutPort, token}.getConfigValue(configName)

@@ -9,6 +9,11 @@ For an overview please refer to the
 [Custom user directory information providers](https://www.papercut.com/support/resources/manuals/ng-mf/common/topics/customize-user-provider.html)
 section in PaperCut MF/NG manual.
 
+This repository contains a number of example implementations.
+
+* Legacy code (also shipped in the PaperCut installer) written in Perl and C located in `olderVersions`
+* More modern Go (in `goversion`) and Python (in `pythonVersion`)
+
 Once you have created and tested the plugin you will need to install it in PaperCut MF/NG:
 
 In the PaperCut MF/NG admin interface select
