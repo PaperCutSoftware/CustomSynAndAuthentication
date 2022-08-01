@@ -5,6 +5,11 @@
 The custom authentication and sync plugin is designed to replace user directory integration
 in PaperCut MF/NG for customers who cannot use the existing AD and LDAP integration support.
 
+Maintaining external user accounts and groups via the custom plugin is often easier than managing
+internal users and groups via the web services API.
+
+To understand the difference between internal and external users please read [this](InternalVsExternalUsers.md).
+
 For an overview please refer to the
 [Custom user directory information providers](https://www.papercut.com/support/resources/manuals/ng-mf/common/topics/customize-user-provider.html)
 section in PaperCut MF/NG manual.
